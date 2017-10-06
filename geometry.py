@@ -3,9 +3,9 @@ class Shape:
     This is a abstract class representing geometrical shape.
     """
 
-    def __init__(self):
+    def check_args_value(self, *args):
         """
-        Constructs Shape object
+        Check if any of args is below 0
 
         Raises:
             ValueError: If any of the parameters is below 0.
