@@ -64,8 +64,7 @@ This is the most important part of this assignment. You've got to implement all 
 This is a so called _abstract class_. It means that we don't create instances of it. We only use it as a parent class for other concrete classes. This parent is a boilerplate for it's children. It contains attributes and methods that should be implemented in child classes.
 
 #### Instance methods
-##### ```__init__(self)```
-Constructs shape object. Should raise `ValueError` if any of the parameters is below 0 (e.g. circle with negative radius doesn't exist).
+
 ##### ```get_area(self)```
 Returns the area of the shape.
 ##### ```get_perimeter(self)```
@@ -74,6 +73,8 @@ Returns the perimeter of the shape.
 Returns information about given shape as string.
 
 #### Class methods
+##### ```check_if_args_not_below_zero(cls, *args)```
+Returns True if any of args are not below 0. Should raise `ValueError` if any of the parameters is below 0 (e.g. circle with negative radius doesn't exist).
 ##### ```get_area_formula(cls)```
 Returns formula for the area of the shape as a string.
 ##### ```get_perimeter_formula(cls)```
