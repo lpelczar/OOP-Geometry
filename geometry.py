@@ -3,15 +3,6 @@ class Shape:
     This is a abstract class representing geometrical shape.
     """
 
-    def check_args_value(self, *args):
-        """
-        Check if any of args is below 0
-
-        Raises:
-            ValueError: If any of the parameters is below 0.
-        """
-        pass
-
     def get_area(self):
         """
         Calculates shape's area.
@@ -20,6 +11,7 @@ class Shape:
             float: area of the shape
         """
         pass
+
 
     def get_perimeter(self):
         """
@@ -30,6 +22,7 @@ class Shape:
         """
         pass
 
+
     def __str__(self):
         """
         Returns information about the shape as string.
@@ -38,6 +31,21 @@ class Shape:
             str: information bout shape
         """
         pass
+
+
+    @classmethod
+    def check_if_args_not_below_zero(cls, *args):
+        """
+        Check if any of args are not below 0
+
+        Returns:
+            bool: True if any of args are not below 0 
+
+        Raises:
+            ValueError: If any of the parameters is below 0.
+        """
+        pass
+
 
     @classmethod
     def get_area_formula(cls):
@@ -48,6 +56,7 @@ class Shape:
             str: area formula
         """
         pass
+
 
     @classmethod
     def get_perimeter_formula(cls):
