@@ -1,4 +1,5 @@
 import math
+from texttable import Texttable
 
 
 class Shape:
@@ -82,7 +83,7 @@ class Circle(Shape):
         return 2 * math.pi * self.r
 
     def __str__(self):
-        return 'Circle, r = {}'.format(r)
+        return 'Circle, r = {}'.format(self.r)
 
     @classmethod
     def get_area_formula(cls):
@@ -109,7 +110,7 @@ class Triangle(Shape):
         return self.a + self.b + self.c
 
     def __str__(self):
-        return 'Triangle, a = {}, b = {}, c = {}'.format(a, b, c)
+        return 'Triangle, a = {}, b = {}, c = {}'.format(self.a, self.b, self.c)
 
     @classmethod
     def get_area_formula(cls):
@@ -126,7 +127,7 @@ class EquilateralTriangle(Triangle):
         super().__init__(a, a, a)
 
     def __str__(self):
-        return 'EquilateralTriangle, a = {}'.format(a)
+        return 'EquilateralTriangle, a = {}'.format(self.a)
 
 
 class Rectangle(Shape):
@@ -143,7 +144,7 @@ class Rectangle(Shape):
         return 2 * self.a + 2 * self.b
 
     def __str__(self):
-        return 'Rectangle, a = {}, b = {}'.format(a, b)
+        return 'Rectangle, a = {}, b = {}'.format(self.a, self.b)
 
     @classmethod
     def get_area_formula(cls):
@@ -160,7 +161,7 @@ class Square(Rectangle):
         super().__init__(a, a)
 
     def __str__(self):
-        return 'Square, a = {}'.format(a)
+        return 'Square, a = {}'.format(self.a)
 
 
 class RegularPentagon(Shape):
@@ -176,7 +177,7 @@ class RegularPentagon(Shape):
         return self.a * 5
 
     def __str__(self):
-        return 'RegularPentagon, a = {}'.format(a)
+        return 'RegularPentagon, a = {}'.format(self.a)
 
     @classmethod
     def get_area_formula(cls):
@@ -196,6 +197,13 @@ class ShapeList:
         if not isinstance(shape, Shape):
             raise TypeError
         self.shapes.append(shape)
+
+    def get_shapes_table(self):
+        t = Texttable()
+        t.add_rows([['idx', 'Class', '__str__', 'Perimeter', 'Formula', 'Area', 'Formula']] +
+                   [[self.shapes.index(s), type(s).__name__, str(s), s.get_perimeter(), s.get_perimeter_formula(),
+                     s.get_area(), s.get_area_formula()] for s in self.shapes])
+        return t.draw()
 
     def get_largest_shape_by_perimeter(self):
         perimeters = list(map(lambda x: x.get_perimeter(), self.shapes))
