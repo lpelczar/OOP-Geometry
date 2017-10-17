@@ -1,3 +1,6 @@
+import math
+
+
 class Shape:
     """
     This is a abstract class representing geometrical shape.
@@ -12,7 +15,6 @@ class Shape:
         """
         pass
 
-
     def get_perimeter(self):
         """
         Calculates shape's perimeter.
@@ -21,7 +23,6 @@ class Shape:
             float: perimeter of the shape
         """
         pass
-
 
     def __str__(self):
         """
@@ -32,20 +33,20 @@ class Shape:
         """
         pass
 
-
     @classmethod
     def check_if_args_not_below_zero(cls, *args):
         """
         Check if any of args are not below 0
 
         Returns:
-            bool: True if any of args are not below 0 
+            bool: True if any of args are not below 0
 
         Raises:
             ValueError: If any of the parameters is below 0.
         """
-        pass
-
+        if not list(filter(lambda x: x < 0, args)):
+            return True
+        raise ValueError
 
     @classmethod
     def get_area_formula(cls):
@@ -56,7 +57,6 @@ class Shape:
             str: area formula
         """
         pass
-
 
     @classmethod
     def get_perimeter_formula(cls):
@@ -70,7 +70,16 @@ class Shape:
 
 
 class Circle(Shape):
-    pass
+
+    def __init__(self, r):
+        self.check_if_args_not_below_zero(r)
+        self.r = r
+
+    def get_area(self):
+        return math.pi * self.r ** 2
+
+    def get_perimeter(self):
+        return 2 * math.pi * self.r
 
 
 class Triangle(Shape):
