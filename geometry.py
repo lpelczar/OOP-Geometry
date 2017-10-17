@@ -119,11 +119,22 @@ class Rectangle(Shape):
 
 
 class Square(Rectangle):
-    pass
+
+    def __init__(self, a):
+        super().__init__(a, a)
 
 
 class RegularPentagon(Shape):
-    pass
+
+    def __init__(self, a):
+        self.check_if_args_not_below_zero(a)
+        self.a = a
+
+    def get_area(self):
+        return (self.a ** 2 * math.sqrt(5 * (5 + 2 * math.sqrt(5)))) / 4
+
+    def get_perimeter(self):
+        return self.a * 5
 
 
 class ShapeList:
