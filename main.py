@@ -5,8 +5,7 @@ from geometry import *
 
 
 def handle_first_menu_option(shapes):
-    new_shape = input('Enter new shape: ')
-    shapes.add_shape(new_shape)
+    pass
 
 
 def handle_second_menu_option(shapes):
@@ -22,19 +21,9 @@ def handle_fourth_menu_option(shapes):
 
 
 def handle_fifth_menu_option(shapes):
-    shape_type = input('Choose shape type:\n' + ' Circle (c)\n' + ' Triangle (t)\n' +
-                       ' Equilateral Triangle (et)\n' + ' Rectangle (r)\n' + ' Square (s)\n' +
-                       ' Regular Pentagon (rp)\n ').upper()
-    if shape_type in ['CIRCLE', 'C']:
-        print_shape_formulas(Circle)
-    elif shape_type in ['TRIANGLE', 'T', 'EQUILATERAL TRIANGLE', 'ET']:
-        print_shape_formulas(Triangle)
-    elif shape_type in ['RECTANGLE', 'R']:
-        print_shape_formulas(Rectangle)
-    elif shape_type in ['SQUARE', 'S']:
-        print_shape_formulas(Square)
-    elif shape_type in ['REGULAR PENTAGON', 'RP']:
-        print_shape_formulas(RegularPentagon)
+    shape_type = ask_for_shape_type()
+    if shape_type in ['c', 't', 'et', 'r', 's', 'rp']:
+        print_shape_formulas(SHAPE_TYPES[shape_type])
     else:
         print('\nWrong input\n')
 
@@ -43,9 +32,22 @@ def handle_sixth_menu_option(shapes):
     sys.exit()
 
 
+def ask_for_shape_type():
+    shape = input('Choose shape type:\n' + ' Circle (c)\n' + ' Triangle (t)\n' + ' Equilateral Triangle (et)\n' +
+                  ' Rectangle (r)\n' + ' Square (s)\n' + ' Regular Pentagon (rp)\n ').lower()
+    return shape
+
+
 def print_shape_formulas(shape):
     print('\nArea formula: {} Perimeter formula: {}\n'.format(shape.get_area_formula(), shape.get_perimeter_formula()))
 
+
+SHAPE_TYPES = {'c': Circle,
+               't': Triangle,
+               'et': EquilateralTriangle,
+               'r': Rectangle,
+               's': Square,
+               'rp': RegularPentagon}
 
 OPTIONS = {
     '1': ['Add new shape', handle_first_menu_option],
