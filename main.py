@@ -5,7 +5,22 @@ from geometry import *
 
 
 def handle_first_menu_option(shapes):
-    pass
+    user_input = input('Enter data in the following syntax:\n' +
+                       ' Circle -> c,<radius>\n' +
+                       ' Triangle -> t,<a>,<b>,<c>\n' +
+                       ' Equilateral Triangle -> et,<a>\n' +
+                       ' Rectangle -> r,<a>,<b>\n' +
+                       ' Square -> s,<a>\n' +
+                       ' Regular Pentagon -> rp,<a>\n ').lower()
+    try:
+        shape_info = user_input.split(',')
+        shape_name = shape_info[0]
+        shape_args = [int(i) for i in shape_info[1:]]
+        new_shape = SHAPE_TYPES[shape_name](*shape_args)
+        shapes.add_shape(new_shape)
+        print('\n{} added successfully!\n'.format(str(new_shape)))
+    except:
+        print('\nWrong input!\n')
 
 
 def handle_second_menu_option(shapes):
@@ -14,10 +29,12 @@ def handle_second_menu_option(shapes):
 
 def handle_third_menu_option(shapes):
     print(shapes.get_largest_shape_by_perimeter())
+    print('\n')
 
 
 def handle_fourth_menu_option(shapes):
     print(shapes.get_largest_shape_by_area())
+    print('\n')
 
 
 def handle_fifth_menu_option(shapes):
