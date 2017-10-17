@@ -83,7 +83,7 @@ class Circle(Shape):
         return 2 * math.pi * self.r
 
     def __str__(self):
-        return 'Circle, r={}'.format(self.r)
+        return 'Circle, r={:0.2f}'.format(self.r)
 
     @classmethod
     def get_area_formula(cls):
@@ -110,7 +110,7 @@ class Triangle(Shape):
         return self.a + self.b + self.c
 
     def __str__(self):
-        return 'Triangle, a={}, b={}, c={}'.format(self.a, self.b, self.c)
+        return 'Triangle, a={:0.2f}, b={:0.2f}, c={:0.2f}'.format(self.a, self.b, self.c)
 
     @classmethod
     def get_area_formula(cls):
@@ -127,7 +127,7 @@ class EquilateralTriangle(Triangle):
         super().__init__(a, a, a)
 
     def __str__(self):
-        return 'EquilateralTriangle, a = {}'.format(self.a)
+        return 'EquilateralTriangle, a = {:0.2f}'.format(self.a)
 
 
 class Rectangle(Shape):
@@ -144,7 +144,7 @@ class Rectangle(Shape):
         return 2 * self.a + 2 * self.b
 
     def __str__(self):
-        return 'Rectangle, a={}, b={}'.format(self.a, self.b)
+        return 'Rectangle, a={:0.2f}, b={:0.2f}'.format(self.a, self.b)
 
     @classmethod
     def get_area_formula(cls):
@@ -161,7 +161,7 @@ class Square(Rectangle):
         super().__init__(a, a)
 
     def __str__(self):
-        return 'Square, a={}'.format(self.a)
+        return 'Square, a={:0.2f}'.format(self.a)
 
     @classmethod
     def get_area_formula(cls):
@@ -185,7 +185,7 @@ class RegularPentagon(Shape):
         return self.a * 5
 
     def __str__(self):
-        return 'RegularPentagon, a={}'.format(self.a)
+        return 'RegularPentagon, a={:0.2f}'.format(self.a)
 
     @classmethod
     def get_area_formula(cls):

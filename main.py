@@ -1,17 +1,12 @@
 import sys
 import os
 import time
+import random
 from geometry import *
 
 
 def handle_first_menu_option(shapes):
-    user_input = input('Enter data in the following syntax:\n' +
-                       ' Circle -> c,<radius>\n' +
-                       ' Triangle -> t,<a>,<b>,<c>\n' +
-                       ' Equilateral Triangle -> et,<a>\n' +
-                       ' Rectangle -> r,<a>,<b>\n' +
-                       ' Square -> s,<a>\n' +
-                       ' Regular Pentagon -> rp,<a>\n ').lower()
+    user_input = ask_for_shape_input()
     try:
         shape_info = user_input.split(',')
         shape_name = shape_info[0]
@@ -46,13 +41,55 @@ def handle_fifth_menu_option(shapes):
 
 
 def handle_sixth_menu_option(shapes):
+    random_shape = generate_random_shape()
+    print('I have generated shape for you, which is {}\n'.format(str(random_shape)))
+    while True:
+        try:
+            area = int(input('Enter the area: '))
+            perimeter = int(input('Enter the perimeter: '))
+            break
+        except ValueError:
+            print('Wrong input!')
+    if abs(area - random_shape.get_area()) < 0.1 and abs(perimeter - random_shape.get_perimeter()) < 0.1:
+        print('Correct!\n')
+    else:
+        print('You are wrong! Area: {:0.2f} Perimeter: {:0.2f}\n'.format(random_shape.get_area(),
+                                                                         random_shape.get_perimeter()))
+
+
+def handle_seventh_menu_option(shapes):
     sys.exit()
+
+
+def generate_random_shape():
+    min_parameter_number = 1
+    max_parameter_number = 20
+
+    shape_name = random.choice([i for i in SHAPE_TYPES.keys()])
+    if shape_name in ['s', 'c', 'et', 'rp']:
+        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(1)]
+    elif shape_name in ['r']:
+        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(2)]
+    elif shape_name in ['t']:
+        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(3)]
+    return SHAPE_TYPES[shape_name](*shape_args)
 
 
 def ask_for_shape_type():
     shape = input('Choose shape type:\n' + ' Circle (c)\n' + ' Triangle (t)\n' + ' Equilateral Triangle (et)\n' +
                   ' Rectangle (r)\n' + ' Square (s)\n' + ' Regular Pentagon (rp)\n ').lower()
     return shape
+
+
+def ask_for_shape_input():
+    user_input = input('Enter data in the following syntax:\n' +
+                       ' Circle -> c,<radius>\n' +
+                       ' Triangle -> t,<a>,<b>,<c>\n' +
+                       ' Equilateral Triangle -> et,<a>\n' +
+                       ' Rectangle -> r,<a>,<b>\n' +
+                       ' Square -> s,<a>\n' +
+                       ' Regular Pentagon -> rp,<a>\n ').lower()
+    return user_input
 
 
 def print_shape_formulas(shape):
@@ -72,7 +109,8 @@ OPTIONS = {
     '3': ['Show shape with the largest perimeter', handle_third_menu_option],
     '4': ['Show shape with the largest area', handle_fourth_menu_option],
     '5': ['Show formulas', handle_fifth_menu_option],
-    '0': ['Exit program', handle_sixth_menu_option]}
+    '6': ['Quiz mode', handle_sixth_menu_option],
+    '0': ['Exit program', handle_seventh_menu_option]}
 
 
 def main():
