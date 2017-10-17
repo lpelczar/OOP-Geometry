@@ -84,6 +84,14 @@ class Circle(Shape):
     def __str__(self):
         return 'Circle, r = {}'.format(r)
 
+    @classmethod
+    def get_area_formula(cls):
+        return 'π×r^2'
+
+    @classmethod
+    def get_perimeter_formula(cls):
+        return '2×π×r'
+
 
 class Triangle(Shape):
 
@@ -102,6 +110,14 @@ class Triangle(Shape):
 
     def __str__(self):
         return 'Triangle, a = {}, b = {}, c = {}'.format(a, b, c)
+
+    @classmethod
+    def get_area_formula(cls):
+        return 'sqrt(s(s-a)(s-b)(s-c)) where s = (a+b+c)/2'
+
+    @classmethod
+    def get_perimeter_formula(cls):
+        return 'a + b + c'
 
 
 class EquilateralTriangle(Triangle):
@@ -129,6 +145,14 @@ class Rectangle(Shape):
     def __str__(self):
         return 'Rectangle, a = {}, b = {}'.format(a, b)
 
+    @classmethod
+    def get_area_formula(cls):
+        return 'a×b'
+
+    @classmethod
+    def get_perimeter_formula(cls):
+        return '2a + 2b'
+
 
 class Square(Rectangle):
 
@@ -153,6 +177,14 @@ class RegularPentagon(Shape):
 
     def __str__(self):
         return 'RegularPentagon, a = {}'.format(a)
+
+    @classmethod
+    def get_area_formula(cls):
+        return '(a^2 sqrt(5(5+2sqrt(5))))/4'
+
+    @classmethod
+    def get_perimeter_formula(cls):
+        return '5a'
 
 
 class ShapeList:
