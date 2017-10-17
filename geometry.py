@@ -44,9 +44,9 @@ class Shape:
         Raises:
             ValueError: If any of the parameters is below 0.
         """
-        if not list(filter(lambda x: x < 0, args)):
-            return True
-        raise ValueError
+        if list(filter(lambda x: x < 0, args)):
+            raise ValueError
+        return True
 
     @classmethod
     def get_area_formula(cls):
@@ -138,4 +138,19 @@ class RegularPentagon(Shape):
 
 
 class ShapeList:
-    pass
+
+    def __init__(self):
+        self.shapes = []
+
+    def add_shape(self, shape):
+        if not isinstance(shape, Shape):
+            raise TypeError
+        self.shapes.append(shape)
+
+    def get_largest_shape_by_perimeter(self):
+        perimeters = list(map(lambda x: x.get_perimeter(), self.shapes))
+        return self.shapes[perimeters.index(max(perimeters))]
+
+    def get_largest_shape_by_area(self):
+        areas = list(map(lambda x: x.get_area(), self.shapes))
+        return self.shapes[areas.index(max(areas))]
