@@ -105,7 +105,17 @@ class EquilateralTriangle(Triangle):
 
 
 class Rectangle(Shape):
-    pass
+
+    def __init__(self, a, b):
+        self.check_if_args_not_below_zero(a, b)
+        self.a = a
+        self.b = b
+
+    def get_area(self):
+        return self.a * self.b
+
+    def get_perimeter(self):
+        return 2 * self.a + 2 * self.b
 
 
 class Square(Rectangle):
