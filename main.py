@@ -1,11 +1,17 @@
 import sys
 import os
-import time
 import random
 from geometry import *
 
 
 def handle_first_menu_option(shapes):
+    """
+    This feature allows user to add new shape to shapes list.
+    User is able to choose what kind of shapes he/she wants to add.
+    Then he/she should specify attributes that a given shape requires.
+
+    :param shapes: ShapeList -> object of ShapeList class
+    """
     user_input = ask_for_shape_input()
     try:
         shape_info = user_input.split(',')
@@ -19,20 +25,40 @@ def handle_first_menu_option(shapes):
 
 
 def handle_second_menu_option(shapes):
+    """
+    This feature should print table containing all shapes added to the list.
+
+    :param shapes: ShapeList -> object of ShapeList class
+    """
     print(shapes.get_shapes_table())
 
 
 def handle_third_menu_option(shapes):
+    """
+    This feature prints shape with the largest perimeter from a list.
+
+    :param shapes: ShapeList -> object of ShapeList class
+    """
     print(shapes.get_largest_shape_by_perimeter())
     print('\n')
 
 
 def handle_fourth_menu_option(shapes):
+    """
+    This feature prints shape with the largest area from a list.
+
+    :param shapes: ShapeList -> object of ShapeList class
+    """
     print(shapes.get_largest_shape_by_area())
     print('\n')
 
 
 def handle_fifth_menu_option(shapes):
+    """
+    This feature should allow user to choose shape type and print it's formulas (perimeter, area).
+
+    :param shapes: ShapeList -> object of ShapeList class
+    """
     shape_type = ask_for_shape_type()
     if shape_type in ['c', 't', 'et', 'r', 's', 'rp']:
         print_shape_formulas(SHAPE_TYPES[shape_type])
@@ -41,6 +67,12 @@ def handle_fifth_menu_option(shapes):
 
 
 def handle_sixth_menu_option(shapes):
+    """
+    This feature generate random shape. Then tell the user the type of shape and it's attributes.
+    The user should calculate the perimeter and area. The program check users answer.
+
+    :param shapes: ShapeList -> object of ShapeList class
+    """
     random_shape = generate_random_shape()
     print('I have generated shape for you, which is {}\n'.format(str(random_shape)))
     while True:
@@ -58,10 +90,18 @@ def handle_sixth_menu_option(shapes):
 
 
 def handle_seventh_menu_option(shapes):
+    """
+    Exits the program.
+    """
     sys.exit()
 
 
 def generate_random_shape():
+    """
+    Generate random shape with given minimum and maximum number of each parameter needed.
+
+    :return: Shape -> object of Shape class
+    """
     min_parameter_number = 1
     max_parameter_number = 20
 
@@ -76,12 +116,22 @@ def generate_random_shape():
 
 
 def ask_for_shape_type():
+    """
+    Ask user for input about shape he want to choose.
+
+    :return: string -> string with shape shortcut
+    """
     shape = input('Choose shape type:\n' + ' Circle (c)\n' + ' Triangle (t)\n' + ' Equilateral Triangle (et)\n' +
                   ' Rectangle (r)\n' + ' Square (s)\n' + ' Regular Pentagon (rp)\n ').lower()
     return shape
 
 
 def ask_for_shape_input():
+    """
+    Ask user for shape formula and return it as a string.
+
+    :return: string -> formula for create a shape as a string
+    """
     user_input = input('Enter data in the following syntax:\n' +
                        ' Circle -> c,<radius>\n' +
                        ' Triangle -> t,<a>,<b>,<c>\n' +
@@ -93,6 +143,11 @@ def ask_for_shape_input():
 
 
 def print_shape_formulas(shape):
+    """
+    Print formula of area and perimeter for a given shape.
+
+    :param shape: Shape -> object of Shape class
+    """
     print('\nArea formula: {} Perimeter formula: {}\n'.format(shape.get_area_formula(), shape.get_perimeter_formula()))
 
 
