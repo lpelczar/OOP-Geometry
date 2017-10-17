@@ -8,14 +8,14 @@ You'll write a Object Oriented Python Application to teach him geometry. Don't w
 
 # Requirements
 In order to help Zigy you have to:
-- [ ] Implement 6 classes in `geometry.py` module
-- [ ] Implement `main.py` module.
-- [ ] You are allowed to implement your own modules. Remember about clean code.
-- [ ] Explain why Linus designed some methods to be class methods instead of instance methods.
-- [ ] Remember about comments and docstrings.
-- [ ] Add UML.png file containing UML class diagram of a geometry.py module
-- [ ] All tests must pass.
-- [ ] Focus most on the OOP not the ui.
+- [x] Implement 6 classes in `geometry.py` module
+- [x] Implement `main.py` module.
+- [x] You are allowed to implement your own modules. Remember about clean code.
+- [x] Explain why Linus designed some methods to be class methods instead of instance methods.
+- [x] Remember about comments and docstrings.
+- [x] Add UML.png file containing UML class diagram of a geometry.py module
+- [x] All tests must pass.
+- [x] Focus most on the OOP not the ui.
 
 Hint: you can reuse code from the previous assignments.
 
@@ -81,7 +81,8 @@ Returns formula for the area of the shape as a string.
 Returns formula for the perimeter of the shape.
 
 Why this methods should be class methods? Edit this readme and give answer below:  
-...........................
+Actually, these methods should be staticmethods because they are connected to the class but they are not
+changing anything within class.
 
 ### Circle Class
 This class represents circle shape.   
