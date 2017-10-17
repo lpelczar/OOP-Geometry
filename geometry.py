@@ -83,11 +83,25 @@ class Circle(Shape):
 
 
 class Triangle(Shape):
-    pass
+
+    def __init__(self, a, b, c):
+        self.check_if_args_not_below_zero(a, b, c)
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def get_area(self):
+        s = (self.a + self.b + self.c) / 2
+        return math.sqrt(s * (s - self.a) * (s - self.b) * (s - self.c))
+
+    def get_perimeter(self):
+        return self.a + self.b + self.c
 
 
 class EquilateralTriangle(Triangle):
-    pass
+
+    def __init__(self, a):
+        super().__init__(a, a, a)
 
 
 class Rectangle(Shape):
