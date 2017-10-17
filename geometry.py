@@ -81,6 +81,9 @@ class Circle(Shape):
     def get_perimeter(self):
         return 2 * math.pi * self.r
 
+    def __str__(self):
+        return 'Circle, r = {}'.format(r)
+
 
 class Triangle(Shape):
 
@@ -97,11 +100,17 @@ class Triangle(Shape):
     def get_perimeter(self):
         return self.a + self.b + self.c
 
+    def __str__(self):
+        return 'Triangle, a = {}, b = {}, c = {}'.format(a, b, c)
+
 
 class EquilateralTriangle(Triangle):
 
     def __init__(self, a):
         super().__init__(a, a, a)
+
+    def __str__(self):
+        return 'EquilateralTriangle, a = {}'.format(a)
 
 
 class Rectangle(Shape):
@@ -117,11 +126,17 @@ class Rectangle(Shape):
     def get_perimeter(self):
         return 2 * self.a + 2 * self.b
 
+    def __str__(self):
+        return 'Rectangle, a = {}, b = {}'.format(a, b)
+
 
 class Square(Rectangle):
 
     def __init__(self, a):
         super().__init__(a, a)
+
+    def __str__(self):
+        return 'Square, a = {}'.format(a)
 
 
 class RegularPentagon(Shape):
@@ -135,6 +150,9 @@ class RegularPentagon(Shape):
 
     def get_perimeter(self):
         return self.a * 5
+
+    def __str__(self):
+        return 'RegularPentagon, a = {}'.format(a)
 
 
 class ShapeList:
