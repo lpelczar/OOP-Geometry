@@ -163,6 +163,14 @@ class Square(Rectangle):
     def __str__(self):
         return 'Square, a={}'.format(self.a)
 
+    @classmethod
+    def get_area_formula(cls):
+        return 'a^2'
+
+    @classmethod
+    def get_perimeter_formula(cls):
+        return '4a'
+
 
 class RegularPentagon(Shape):
 
