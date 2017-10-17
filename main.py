@@ -3,6 +3,9 @@ import os
 import random
 from geometry import *
 
+OPTION_TITLE_INDEX = 0
+OPTION_FUNCTION_INDEX = 1
+
 
 def handle_first_menu_option(shapes):
     """
@@ -12,11 +15,14 @@ def handle_first_menu_option(shapes):
 
     :param shapes: ShapeList -> object of ShapeList class
     """
+    SHAPE_NAME_INDEX = 0
+    PARAMETERS_STARTING_INDEX = 1
+
     user_input = ask_for_shape_input()
     try:
         shape_info = user_input.split(',')
-        shape_name = shape_info[0]
-        shape_args = [int(i) for i in shape_info[1:]]
+        shape_name = shape_info[SHAPE_NAME_INDEX]
+        shape_args = [int(i) for i in shape_info[PARAMETERS_STARTING_INDEX:]]
         new_shape = SHAPE_TYPES[shape_name](*shape_args)
         shapes.add_shape(new_shape)
         print('\n{} added successfully!\n'.format(str(new_shape)))
@@ -104,14 +110,17 @@ def generate_random_shape():
     """
     min_parameter_number = 1
     max_parameter_number = 20
+    SQUARE_PARAMS_NUM = 1
+    RECTANGLE_PARAMS_NUM = 2
+    TRIANGLE_PARAMS_NUM = 3
 
     shape_name = random.choice([i for i in SHAPE_TYPES.keys()])
     if shape_name in ['s', 'c', 'et', 'rp']:
-        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(1)]
+        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(SQUARE_PARAMS_NUM)]
     elif shape_name in ['r']:
-        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(2)]
+        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(RECTANGLE_PARAMS_NUM)]
     elif shape_name in ['t']:
-        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(3)]
+        shape_args = [random.randint(min_parameter_number, max_parameter_number) for i in range(TRIANGLE_PARAMS_NUM)]
     return SHAPE_TYPES[shape_name](*shape_args)
 
 
@@ -174,13 +183,13 @@ def main():
     while True:
         print('Learn Geometry.\n What do you want to do?')
         for key, value in OPTIONS.items():
-            print(' (' + key + ') ' + value[0])
+            print(' (' + key + ') ' + value[OPTION_TITLE_INDEX])
         user_input = input("Type number of option: ")
         if (user_input not in OPTIONS):
             os.system('clear')
         else:
             os.system('clear')
-            OPTIONS[user_input][1](shapes)
+            OPTIONS[user_input][OPTION_FUNCTION_INDEX](shapes)
 
 
 if __name__ == "__main__":
