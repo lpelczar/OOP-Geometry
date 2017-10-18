@@ -81,6 +81,7 @@ def handle_sixth_menu_option(shapes):
     """
     random_shape = generate_random_shape()
     print('I have generated shape for you, which is {}\n'.format(str(random_shape)))
+    random_shape.draw_shape()
     while True:
         try:
             area = int(input('Enter the area: '))
@@ -108,8 +109,8 @@ def generate_random_shape():
 
     :return: Shape -> object of Shape class
     """
-    min_parameter_number = 1
-    max_parameter_number = 20
+    min_parameter_number = 80
+    max_parameter_number = 100
     SQUARE_PARAMS_NUM = 1
     RECTANGLE_PARAMS_NUM = 2
     TRIANGLE_PARAMS_NUM = 3

@@ -1,5 +1,8 @@
 import math
+import turtle
 from texttable import Texttable
+
+HALF_ANGLE = 180
 
 
 class Shape:
@@ -123,6 +126,15 @@ class Circle(Shape):
         """
         return '2×π×r'
 
+    def draw_shape(self):
+        """
+        Draw circle using turtle module.
+        """
+        turtle.TurtleScreen._RUNNING = True
+        t = turtle.Turtle()
+        t.circle(self.r)
+        turtle.exitonclick()
+
 
 class Triangle(Shape):
 
@@ -176,6 +188,28 @@ class Triangle(Shape):
         :return: string
         """
         return 'a+b+c'
+
+    def draw_shape(self):
+        """
+        Draw triangle using turtle module.
+        Using formula for radius for circle described on triangle: R = (axbxc)/ 4 * area
+        Using 'Snellius law' formula for angles: a/sin(alfa) + b/sin(beta) + c/sin(gamma) = 2 x R
+        Using law that angles sum in triangle = 180 degress
+        """
+        area = self.get_area()
+        R = (self.a * self.b * self.c) / (4 * area)
+        alfa = math.degrees(math.asin(self.c / (2 * R)))
+        beta = math.degrees(math.asin(self.a / (2 * R)))
+        gamma = HALF_ANGLE - alfa - beta
+
+        turtle.TurtleScreen._RUNNING = True
+        t = turtle.Turtle()
+        t.forward(self.a)
+        t.right(gamma - HALF_ANGLE)
+        t.forward(self.c)
+        t.right(beta - HALF_ANGLE)
+        t.forward(self.b)
+        turtle.exitonclick()
 
 
 class EquilateralTriangle(Triangle):
@@ -233,6 +267,22 @@ class Rectangle(Shape):
         :return: string
         """
         return 'Rectangle, a={:0.2f}, b={:0.2f}'.format(self.a, self.b)
+
+    def draw_shape(self):
+        """
+        Draw rectangle using turtle module.
+        """
+        STRAIGHT_ANGLE = 90
+        turtle.TurtleScreen._RUNNING = True
+        t = turtle.Turtle()
+        t.forward(self.a)
+        t.right(- STRAIGHT_ANGLE)
+        t.forward(self.b)
+        t.right(- STRAIGHT_ANGLE)
+        t.forward(self.a)
+        t.right(- STRAIGHT_ANGLE)
+        t.forward(self.b)
+        turtle.exitonclick()
 
     @classmethod
     def get_area_formula(cls):
@@ -342,6 +392,24 @@ class RegularPentagon(Shape):
         :return: string
         """
         return '5a'
+
+    def draw_shape(self):
+        """
+        Draw rectangle using turtle module.
+        """
+        PENTAGON_ANGLE = 108
+        turtle.TurtleScreen._RUNNING = True
+        t = turtle.Turtle()
+        t.forward(self.a)
+        t.right(PENTAGON_ANGLE - HALF_ANGLE)
+        t.forward(self.a)
+        t.right(PENTAGON_ANGLE - HALF_ANGLE)
+        t.forward(self.a)
+        t.right(PENTAGON_ANGLE - HALF_ANGLE)
+        t.forward(self.a)
+        t.right(PENTAGON_ANGLE - HALF_ANGLE)
+        t.forward(self.a)
+        turtle.exitonclick()
 
 
 class ShapeList:
