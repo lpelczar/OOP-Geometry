@@ -88,6 +88,7 @@ def handle_sixth_menu_option(shapes):
 
     :param shapes: ShapeList -> object of ShapeList class
     """
+    precision = 0.1
     random_shape = generate_random_shape()
     print('I have generated shape for you, which is {}\n'.format(str(random_shape)))
     random_shape.draw_shape()
@@ -98,7 +99,7 @@ def handle_sixth_menu_option(shapes):
             break
         except ValueError:
             print('Wrong input!')
-    if abs(area - random_shape.get_area()) < 0.1 and abs(perimeter - random_shape.get_perimeter()) < 0.1:
+    if abs(area - random_shape.get_area()) < precision and abs(perimeter - random_shape.get_perimeter()) < precision:
         print('Correct!\n')
     else:
         print('You are wrong! Area: {:0.2f} Perimeter: {:0.2f}\n'.format(random_shape.get_area(),
