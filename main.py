@@ -152,6 +152,19 @@ def ask_for_shape_input():
     return user_input
 
 
+def print_menu_options():
+    """
+    Print options in console to represent menu
+    """
+    print(' (1) Add new shape\n' +
+          ' (2) Show all shapes\n' +
+          ' (3) Show shape with the largest perimeter\n' +
+          ' (4) Show shape with the largest area\n' +
+          ' (5) Show formulas\n' +
+          ' (6) Quiz mode\n' +
+          ' (0) Exit program')
+
+
 def print_shape_formulas(shape):
     """
     Print formula of area and perimeter for a given shape.
@@ -183,8 +196,7 @@ def main():
     shapes = ShapeList()
     while True:
         print('Learn Geometry.\n What do you want to do?')
-        for key, value in OPTIONS.items():
-            print(' (' + key + ') ' + value[OPTION_TITLE_INDEX])
+        print_menu_options()
         user_input = input("Type number of option: ")
         if (user_input not in OPTIONS):
             os.system('clear')
