@@ -17,10 +17,19 @@ def handle_first_menu_option(shapes):
     """
     SHAPE_NAME_INDEX = 0
     PARAMETERS_STARTING_INDEX = 1
+    PAR_A_INDEX = 1
+    PAR_B_INDEX = 2
+    PAR_C_INDEX = 3
 
     user_input = ask_for_shape_input()
     try:
         shape_info = user_input.split(',')
+        if shape_info[SHAPE_NAME_INDEX] == 't':
+            if shape_info[PAR_A_INDEX] + shape_info[PAR_B_INDEX] < shape_info[PAR_C_INDEX] or \
+               shape_info[PAR_B_INDEX] + shape_info[PAR_C_INDEX] < shape_info[PAR_A_INDEX] or \
+               shape_info[PAR_C_INDEX] + shape_info[PAR_A_INDEX] < shape_info[PAR_B_INDEX]:
+                print('\nInvalid triangle.')
+                raise ValueError
         shape_name = shape_info[SHAPE_NAME_INDEX]
         shape_args = [int(i) for i in shape_info[PARAMETERS_STARTING_INDEX:]]
         new_shape = SHAPE_TYPES[shape_name](*shape_args)
