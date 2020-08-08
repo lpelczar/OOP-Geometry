@@ -242,6 +242,7 @@ Returns shape with largest area. Hint: have a look at [comparison methods]( http
 ###### Return value
 `Shape` object
 
+![c1](https://raw.github.com/lpelczar/OOP-Geometry/master/UML.png)
 
 # Extra
 If you've fulfilled all the basic requirements and you're ambitious enough to continue, here's idea what you can do.
