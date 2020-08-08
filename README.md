@@ -184,7 +184,7 @@ Decide on your own if you have to override inherited methods.
 
 ### Regular pentagon Class
 This is a shape with 5 sides. All sides are of the same length.  
-![alt](http://www.zdamy.pl/data/mat/planimetria/polepieciokata/rys1.gif "Regular pentagon")
+
 #### Parent class
 Shape
 #### Attributes
